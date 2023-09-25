@@ -21,7 +21,20 @@ The API exposes the following endpoints:
    
 4. **/v2/sentiment**:
    - Returns sentiment analysis using a newer model.
+   
+### API Availability
 
+The API is accessible on port 8000 of the host machine.
+
+### API Documentation
+
+For detailed descriptions of the API endpoints, visit the `/docs` endpoint. This interactive documentation provides information on how to use each API endpoint, including request parameters and expected responses.
+
+To access the API documentation, open a web browser and navigate to the following URL:
+
+```http
+http://your-host-machine:8000/docs
+```
 ## API Usage
 
 ### /status Endpoint
@@ -30,3 +43,18 @@ The API exposes the following endpoints:
 
 ```http
 GET /status
+```
+
+## Getting Started
+
+To get started with the Sentiment Analysis API, follow these steps:
+
+### Step 1: Download the Docker Image
+
+To download the Docker image, run the following command:
+
+```bash
+docker image pull datascientest/fastapi:1.0.0
+
+docker container run -p 8000:8000 datascientest/fastapi:1.0.0
+```

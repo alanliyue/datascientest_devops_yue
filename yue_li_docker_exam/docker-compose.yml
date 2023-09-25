@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  fast_api:
+    image: datascientest/fastapi:1.0.0
+    container_name: fastapi_backend
+    networks:
+      - network1
+  test_authentication:
+    image: authentication_test_image:latest
+    depends_on:
+      - fast_api
+    container_name: test_authentication
+    networks:
+      - network1
+    volumes:
+      - ./logs:/home/yue_li/logs
+      - ./authentication:/home/yue_li/authentication/
+  test_authorization:
+    image: authorization_test_image:latest
+    depends_on:
+      - test_authentication
+    container_name: test_authorization
+    networks:
+      - network1
+    volumes:
+      - ./logs:/home/yue_li/logs
+      - ./authorization:/home/yue_li/authorization
+  test_score:
+    image: score_test_image:latest
+    depends_on:
+      - test_authorization
+    container_name: test_score
+    networks:
+      - network1
+    volumes:
+      - ./logs:/home/yue_li/logs
+      - ./score:/home/yue_li/score
+
+networks:
+  network1:
+    name: my_network
+    external: true
